@@ -1,0 +1,51 @@
+.tooltip {
+    -fx-text-fill: white!important;
+}
+
+.table-row-cell:selected, .tree-table-row-cell:selected {
+    -fx-background-color: lightblue;
+    -fx-text-fill: black;
+}
+
+.table-cell, .tree-table-cell, {
+    -fx-text-fill:black;
+
+}
+
+.hyperlink {
+    -fx-padding: 0;
+}
+
+.hyperlink, .hyperlink:selected, .hyperlink:visited  {
+    -fx-text-fill: "#007fb6";
+}
+
+.currency-cell, .percentage-cell, .cell-text-right {
+    -fx-alignment: CENTER-RIGHT;
+}
+
+
+
+.comboBox-cell {
+    -fx-padding: 0;
+}
+
+.comboBox-cell .combo-box {
+    -fx-background-color: "#00000000";
+}
+
+
+/* TreeTableView, jede 2 spalte ausgrauen */
+.alternate-row {
+    -fx-background-color: "#dddddd40";
+}
+
+/* Childs in der TreeTableView */
+.variation-row .tree-table-cell {
+    -fx-background-color: "#6200EA18";
+}
+
+
+.cell-space-invisible {
+    -fx-background-color: #dddddd!important;
+}

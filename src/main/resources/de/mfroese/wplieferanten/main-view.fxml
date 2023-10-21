@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.mfroese.wplieferanten.gui.MainController">
+    <children>
+
+        <TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <tabs>
+                <Tab fx:id="tabSupplier" text=" 🚚 Lieferanten ">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <FlowPane alignment="CENTER_LEFT" minWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <ButtonBar buttonMinWidth="26.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0">
+                                            <buttons>
+                                                <Button fx:id="reloadSupplierButton" alignment="CENTER" maxWidth="26.0" mnemonicParsing="false" onAction="#reloadSuppliersThread">
+                                       <graphic>
+                                          <SVGPath content="M8.324.664C3.73.664 0 4.402 0 9a8.33 8.33 0 0 0 8.355 8.336V14.55c-3.066 0-5.57-2.492-5.57-5.551s2.473-5.55 5.531-5.55a5.555 5.555 0 0 1 5.543 5.362h-1.37l2.753 3.876L18 8.812h-1.352C16.551 4.306 12.86.665 8.324.665zm0 0" />
+                                       </graphic></Button>
+                                                <Button fx:id="supplierNew" maxWidth="85.0" mnemonicParsing="false" onAction="#supplierButton" prefWidth="85.0" text="Neu" />
+                                                <Button fx:id="supplierEdit" disable="true" maxWidth="85.0" mnemonicParsing="false" onAction="#supplierButton" prefWidth="85.0" text="Bearbeiten" />
+                                                <Button fx:id="supplierDelete" disable="true" maxWidth="85.0" mnemonicParsing="false" onAction="#deleteSupplier" prefWidth="85.0" text="Löschen" />
+                                            </buttons>
+                                 <FlowPane.margin>
+                                    <Insets left="-10.0" />
+                                 </FlowPane.margin>
+                                        </ButtonBar>
+                                    </children>
+                                </FlowPane>
+                                <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" minWidth="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <ButtonBar buttonMinWidth="26.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0">
+                                            <buttons>
+                                                <TextField fx:id="searchfieldSuppliers" maxWidth="200.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" promptText="Suchen" translateX="37.0">
+                                       <padding>
+                                          <Insets left="4.0" right="30.0" />
+                                       </padding></TextField>
+                                    <Button fx:id="btnCleanSearchfieldSuppliers" disable="true" ellipsisString="" graphicTextGap="0.0" maxWidth="26.0" minWidth="26.0" mnemonicParsing="false" onAction="#cleanSearchfieldSuppliers" prefHeight="25.0">
+                                       <graphic>
+                                          <Text scaleX="1.6" scaleY="1.6" strokeType="OUTSIDE" strokeWidth="0.0" text="✕" />
+                                       </graphic></Button>
+                                            </buttons>
+                                 <FlowPane.margin>
+                                    <Insets right="10.0" />
+                                 </FlowPane.margin>
+                                        </ButtonBar>
+                                    </children>
+                                </FlowPane>
+                                <TableView fx:id="supplierTableView" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                    <columns>
+                                        <TableColumn fx:id="idColumn" maxWidth="80.0" minWidth="40.0" prefWidth="40.0" styleClass="cell-text-right" text="ID" />
+                                        <TableColumn fx:id="companyColumn" maxWidth="350.0" minWidth="145.0" prefWidth="145.0" text="Unternehmen" />
+                                        <TableColumn fx:id="websiteColumn" maxWidth="350.0" minWidth="140.0" prefWidth="140.0" text="Webseite" />
+                                        <TableColumn fx:id="vatColumn" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="MwSt" />
+                                        <TableColumn fx:id="profitMarginColumn" maxWidth="120.0" minWidth="60.0" prefWidth="60.0" text="Margin" />
+                                        <TableColumn fx:id="contactColumn" maxWidth="350.0" minWidth="120.0" prefWidth="120.0" text="Kontakt" />
+                                        <TableColumn fx:id="emailColumn" maxWidth="350.0" minWidth="110.0" prefWidth="110.0" text="Email" />
+                                        <TableColumn fx:id="phoneColumn" maxWidth="350.0" minWidth="100.0" prefWidth="100.0" text="Telefon" />
+                                    </columns>
+                                </TableView>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tabProduct" text=" 📦 Produkte ">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <FlowPane alignment="BOTTOM_LEFT" minWidth="300.0" prefWidth="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <ButtonBar buttonMinWidth="26.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0">
+                                            <buttons>
+                                                <Button fx:id="reloadProductsButton" layoutX="116.0" layoutY="17.0" maxWidth="26.0" mnemonicParsing="false" onAction="#reloadProductsThread" prefWidth="26.0">
+                                       <graphic>
+                                          <SVGPath content="M8.324.664C3.73.664 0 4.402 0 9a8.33 8.33 0 0 0 8.355 8.336V14.55c-3.066 0-5.57-2.492-5.57-5.551s2.473-5.55 5.531-5.55a5.555 5.555 0 0 1 5.543 5.362h-1.37l2.753 3.876L18 8.812h-1.352C16.551 4.306 12.86.665 8.324.665zm0 0" />
+                                       </graphic></Button>
+                                                <Button fx:id="productEdit" disable="true" maxWidth="85.0" minWidth="85.0" mnemonicParsing="false" onAction="#editProduct" text="Bearbeiten" />
+                                                <Button fx:id="productDelete" disable="true" maxWidth="85.0" mnemonicParsing="false" onAction="#deleteProduct" prefWidth="85.0" text="Löschen" />
+                                            </buttons>
+                                 <FlowPane.margin>
+                                    <Insets left="-10.0" />
+                                 </FlowPane.margin>
+                                        </ButtonBar>
+                                    </children>
+                                </FlowPane>
+                                <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" minWidth="440.0" prefWrapLength="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <ButtonBar buttonMinWidth="26.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0">
+                                            <buttons>
+                                                <Button fx:id="loadSupplierData" disable="true" maxWidth="150.0" mnemonicParsing="false" onAction="#loadProductsFromUrlThread" text="Lieferantendaten Laden" translateX="37.0" />
+
+                                                <TextField fx:id="searchfieldProducts" maxWidth="200.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" promptText="Suchen" translateX="37.0">
+                                       <padding>
+                                          <Insets left="4.0" right="30.0" />
+                                       </padding></TextField>
+                                    <Button fx:id="btnCleanSearchfieldProducts" disable="true" maxWidth="26.0" minWidth="26.0" mnemonicParsing="false" onAction="#cleanSearchfieldProducts" prefHeight="25.0">
+                                       <graphic>
+                                          <Text scaleX="1.6" scaleY="1.6" strokeType="OUTSIDE" strokeWidth="0.0" text="✕" />
+                                       </graphic></Button>
+                                            </buttons>
+                                 <FlowPane.margin>
+                                    <Insets right="10.0" />
+                                 </FlowPane.margin>
+                                        </ButtonBar>
+                                    </children>
+                                </FlowPane>
+                                <TreeTableView fx:id="productTableView" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
+                                    <columns>
+                                        <TreeTableColumn fx:id="productIdColumn" maxWidth="70.0" minWidth="58.0" prefWidth="58.0" styleClass="cell-text-right" text="ID" />
+                                        <TreeTableColumn fx:id="productTitleColumn" maxWidth="600.0" minWidth="130.0" prefWidth="130.0" text="Produkt" />
+                                        <TreeTableColumn fx:id="productPriceColumn" maxWidth="140.0" minWidth="70.0" prefWidth="70.0" text="Preis" />
+                                        <TreeTableColumn fx:id="productPriceRulesColumn" maxWidth="170.0" minWidth="110.0" prefWidth="110.0" text="Staffel Preise" />
+                                        <TreeTableColumn fx:id="productStockColumn" maxWidth="100.0" minWidth="60.0" prefWidth="60.0" text="Lieferbar" />
+                                        <TreeTableColumn editable="false" maxWidth="6.0" minWidth="6.0" prefWidth="6.0" resizable="false" sortable="false" styleClass="cell-space-invisible" />
+                                        <TreeTableColumn fx:id="supplierProductIdColumn" maxWidth="60.0" minWidth="35.0" prefWidth="35.0" styleClass="cell-text-right" text="ID" />
+                                        <TreeTableColumn fx:id="supplierProductUrlColumn" maxWidth="400.0" minWidth="75.0" prefWidth="75.0" text="Produkt Url" />
+                                        <TreeTableColumn fx:id="supplierProductPriceColumn" maxWidth="140.0" minWidth="70.0" prefWidth="70.0" text="Preis" />
+                                        <TreeTableColumn fx:id="supplierProductPriceRulesColumn" maxWidth="170.0" minWidth="110.0" prefWidth="110.0" text="Staffel Preise" />
+                                        <TreeTableColumn fx:id="supplierProductStockColumn" maxWidth="100.0" minWidth="60.0" prefWidth="60.0" text="Lieferbar" />
+                                    </columns>
+                                </TreeTableView>
+                                <VBox alignment="CENTER" prefHeight="25.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Eigener Shop">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lieferant">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </VBox>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tabSettings" disable="true" text=" Einstellungen ">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Line endX="4000.0" fill="#e4e4e4" layoutX="11.0" layoutY="556.0" stroke="#e4e4e4" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" />
+                                <Line endX="4000.0" fill="LIGHTGRAY" stroke="LIGHTGRAY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <AnchorPane maxHeight="240.0" maxWidth="240.0" minHeight="240.0" minWidth="240.0" prefHeight="240.0" prefWidth="240.0">
+                                            <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Datenbank" textAlignment="CENTER" wrappingWidth="240.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <font>
+                                                        <Font size="18.0" />
+                                                    </font>
+                                                </Text>
+                                                <Text layoutX="10.0" layoutY="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ip Adresse" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="45.0" />
+                                                <Text layoutX="10.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datenbank" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="85.0" />
+                                                <Text layoutX="30.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Benutzer" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="125.0" />
+                                                <Text layoutX="20.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="165.0" />
+                                                <TextField fx:id="serverIp" layoutX="10.0" layoutY="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+                                                <TextField fx:id="serverDatabase" layoutX="10.0" layoutY="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0" />
+                                                <TextField fx:id="serverUser" layoutX="20.0" layoutY="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0" />
+                                                <PasswordField fx:id="serverPassword" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="160.0" />
+                                                <Button contentDisplay="CENTER" layoutX="10.0" layoutY="184.0" mnemonicParsing="false" onAction="#onSettingsTest" prefWidth="90.0" text="Testen" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" />
+                                                <Button fx:id="setingsSave" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#onSettingsSave" prefWidth="90.0" text="Speichern" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" />
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+        <Text fx:id="bottomNote" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" />
+        <ProgressBar fx:id="loadingProgressBar" prefWidth="150.0" progress="0.0" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="10.0" />
+        <Text fx:id="progressBarTitle" layoutX="18.0" layoutY="603.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="200.0" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="170.0" />
+      <Text opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Version: 0.30" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="7.0" />
+
+    </children>
+</AnchorPane>
